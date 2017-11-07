@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为Dao接口提供sql语句配置-->
+<mapper namespace="org.seckill.dao.SuccessKilledDao">
+    <!--如果出现主键冲突，要报错，而在sql中添加ignore，出现错误会忽略，但是返回的插入成功条数为0，当然，如果sql本身错误，还是会报错-->
+    <insert id="insertSuccessKilled">
+        insert ignore into success_killed(seckill_id,user_phone)
+        values (#{secKillId},#{userPhone});
+    </insert>
+
+    <!--如果要查询的对象中含有其他的对象，我们需要用"子对象.表列名"来表示-->
+    <select id="queryByIdWithSeckill" resultType="SuccessKilled">
+        select
+        sk.seckill_id,
+        sk.user_phone,
+        sk.statue,
+        sk.create_time,
+        sc.seckill_id "seckill.seckill_id",
+        sc.name "seckill.name",
+        sc.number "seckill.number",
+        sc.start_time "seckill.start_time",
+        sc.end_time "seckill.end_time",
+        sc.create_time "seckill.create_time"
+        from seckill sc
+        inner join success_killed sk on sc.seckill_id=sk.seckill_id
+        where sk.seckill_id=#{secKillId} and sk.user_phone=#{userPhone};
+    </select>
+</mapper>
