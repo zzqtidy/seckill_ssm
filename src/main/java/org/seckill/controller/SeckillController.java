@@ -34,7 +34,7 @@ public class SeckillController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
     public String list(Model model) {
         //list.jsp+参数model 就组成了ModelAndView
         List<Seckill> list = seckillService.getSeckillList();
