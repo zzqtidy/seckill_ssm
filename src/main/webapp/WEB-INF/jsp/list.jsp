@@ -35,10 +35,10 @@
                         <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${seckill.startTime}" /></td>
                         <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${seckill.endTime}" /></td>
                         <td>${seckill.number}</td>
-                        <td><a class="btn btn-success">詳情</a></td>
+                        <td><a class="btn btn-success">详情</a></td>
 
                     </tr>
-                </c:forEach>
+                </c:forEach>ßßß
             </tbody>
         </table>
     </div>
