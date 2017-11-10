@@ -23,6 +23,21 @@ var seckill = {
                     backdrop: 'static',//禁止点击其他区域退出弹出层
                     keyboard: false//禁止键盘事件
                 });
+                $('#killPhoneBtn').click(function () {
+                    console.log("进入手机号点击");
+                    var inputPhone = $('#killPhoneKey').val();
+                    console.log(inputPhone);
+                    if(seckill.validatePhone(inputPhone)){
+                        //电话号码写入cookie
+                        //cookie默认7天过期， 同时只存放于/seckill下
+                        $.cookie('killPhone',inputPhone,{expire:7,path:'/seckill'});
+                        window.location.reload();
+                    }
+                    else
+                    {
+                        $('#killPhoneMessage').hide().html('<label class="label label-danger">手机号错误!</label>').show(300);
+                    }
+                })
             }
         }
     }
